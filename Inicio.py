@@ -10,23 +10,12 @@ import dash
 import dash_daq as daq
 import dash_core_components as dcc
 import dash_html_components as html
-import geopandas as gpd
 from dash.dependencies import Input, Output
-from dash_extensions import Download
-from dash_extensions.snippets import send_data_frame
 import dash_bootstrap_components as dbc
-import plotly.express as px
 import plotly.graph_objects as go
-from plotly.subplots import make_subplots
-import pandas as pd
-import os as os
-import numpy as np
-import datetime
 import base64
-from datetime import date
-from datetime import timedelta
 from textwrap import dedent
-from datetime import datetime as dt
+
 
 
 image_filename_cr2 = 'logo_footer110.png'
@@ -39,7 +28,7 @@ image_filename_GWA = 'logo_footer110.png'
 encoded_image_GWA = base64.b64encode(open(image_filename_GWA, 'rb').read()).decode('ascii')
 image_filename_GWA_center = 'GAW_index.png'
 encoded_image_GWA_center = base64.b64encode(open(image_filename_GWA_center, 'rb').read()).decode('ascii')
-image_filename_rapa_nui = 'map.png'
+image_filename_rapa_nui = 'mapa_tres.png'
 encoded_image_rapa_nui = base64.b64encode(open(image_filename_rapa_nui, 'rb').read()).decode('ascii')
 
 
@@ -224,7 +213,7 @@ def Web_Language(Switch_Lang):
                                   html.H2(html.A("Rapa Nui Dashboard",href = 'https://rapanui.wayra.cr2.cl/' ), style={'margin-left':'10px',
                                                                                      'text-align': 'center','font-family': 'Abel','font-size': '22px','color': 'limegreen','backgroundColor': '#f6f6f6'}),
                                   html.A([       
-             html.Img(src='data:image/png;base64,{}'.format(encoded_image_rapa_nui), style={'height':'300px'})],href = 'https://rapanui.wayra.cr2.cl/', style={'margin-left': '50px'}),
+             html.Img(src='data:image/png;base64,{}'.format(encoded_image_rapa_nui), style={'height':'200px'})],href = 'https://rapanui.wayra.cr2.cl/', style={'margin-left': '50px'}),
                                   
                                   dcc.Markdown(
                                       dedent(f'''
@@ -234,4 +223,4 @@ def Web_Language(Switch_Lang):
                               
                               ], style={'backgroundColor': '#f6f6f6'})]
 if __name__ == '__main__':
-    app.run_server(debug=False,host='0.0.0.0', port = 8170)    
+    app.run_server(debug=False,host='0.0.0.0', port = 8071)    

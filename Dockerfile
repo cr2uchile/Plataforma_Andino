@@ -10,7 +10,7 @@ RUN pip install -r requirements.txt
 
 #COPY . App/ 
 
-EXPOSE 8170
+EXPOSE 8071
 
 CMD ["python","/App/Inicio.py"]
 
