@@ -1,0 +1,14 @@
+Instrumento,Fabricante,Fecha de Instalación,Variables de Interés,Otros
+PTB110,Vaisala,3 enero 2020,Presión atmosférica,
+HMP155,Vaisala,3 enero 2020,"Temperatura
+Humedad",10 Mts
+HC2A-S3,Rotronic,3 enero 2020,"Temperatura
+Humedad",2 Mts
+NR01,Hukseflux,3 enero 2020,Radiación Solar 4 componentes,Hi/Lo wavelength
+LP02,Hukseflux,3 enero 2020,Radiación global Horizontal (Clase C),
+Windsonic 1,Gill Instruments,3 enero 2020,Velocidad y dirección del viento,"ultrasónico
+10 Mts"
+5103,RM Young,3 enero 2020,Velocidad y dirección del viento,"Mecánico
+2 mts"
+Sr50a,Campbell scientific Canada,3 enero 2020,Altura de nieve,ultrasónico
+T041D TPW225,SIAP+MICROS,1 diciembre 2020,Precipitación,Peso

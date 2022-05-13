@@ -15,8 +15,20 @@ import dash_bootstrap_components as dbc
 import plotly.graph_objects as go
 import base64
 from textwrap import dedent
+import pandas as pd
+import dash_table
 
+df = pd.read_csv('df_data.csv')
 
+def generate_table(dataframe, max_rows=26):
+    return html.Table(
+        # Header
+        [html.Tr([html.Th(col) for col in dataframe.columns]) ] +
+        # Body
+        [html.Tr([
+            html.Td(dataframe.iloc[i][col]) for col in dataframe.columns
+        ]) for i in range(min(len(dataframe), max_rows))]
+    )
 
 image_filename_cr2 = 'logo_footer110.png'
 encoded_image_cr2 = base64.b64encode(open(image_filename_cr2, 'rb').read()).decode('ascii')
@@ -30,6 +42,9 @@ image_filename_GWA_center = 'GAW_index.png'
 encoded_image_GWA_center = base64.b64encode(open(image_filename_GWA_center, 'rb').read()).decode('ascii')
 image_filename_rapa_nui = 'mapa_tres.png'
 encoded_image_rapa_nui = base64.b64encode(open(image_filename_rapa_nui, 'rb').read()).decode('ascii')
+
+image_filename_cerro = 'cerro.jpeg'
+encoded_image_cerro = base64.b64encode(open(image_filename_cerro, 'rb').read()).decode('ascii')
 
 
 fig = go.Figure(go.Scattergeo(lat=[-27.16], lon=[-109.43]))
@@ -63,10 +78,8 @@ app.layout = html.Div([
 ################################### Configuración Encabezado html.Img(src='data:image/png;base64,{}'.format(encoded_image_GWA_center),style={'height':'400px', 'margin-left':'100px'})Página Web##############    
     html.Div([
         html.Div([html.H2("", style={'font-size':'18pt','color': 'white','font-family': 'Abel', 'font-weight': '200 !important', 'margin-top': '28px', 'margin-left':'10px'})], style={'position':'absolute','display': 'inline-block'}),
-             html.A([       
-             html.Img(src='data:image/png;base64,{}'.format(encoded_image_cr2), style={'height':'80px'})],href = 'http://www.cr2.cl/', style={'margin-left': '400px', 'position':'absolute'}),
              html.A([     
-             html.Img(src='data:image/png;base64,{}'.format(encoded_image_DMC),style = {'height':'80px'})], href='http://www.meteochile.gob.cl/PortalDMC-web', style={'margin-left': '700px', 'position':'absolute'}),
+             html.Img(src='data:image/png;base64,{}'.format(encoded_image_DMC),style = {'height':'80px'})], href='http://www.meteochile.gob.cl/PortalDMC-web', style={'margin-left': '400px', 'position':'absolute'}),
              html.A([     
              html.Img(src='data:image/png;base64,{}'.format(encoded_image_GWA),style = {'height':'80px'})], href='https://www.wmo.int/gaw/', style={'margin-left': '100px', 'position':'absolute'}),
             html.Div([
@@ -82,9 +95,13 @@ app.layout = html.Div([
         
     ],
     style={'backgroundColor':'limegreen', 'height':'80px'}),
-#####################################################################################    
+#####################################################################################
+
+
+#####################################################################################
+    
     html.Div(id='tabs-content', style={'backgroundcolor':'#f6f6f6'})
-])    
+],)    
 ########################################Contenido Página Web#########################
 @app.callback(Output('tabs-content', 'children'),
               Input('Switch_Lang', 'value'))
@@ -98,6 +115,9 @@ def Web_Language(Switch_Lang):
             dcc.Markdown(dedent(f'''
 			La estación de Alta Montaña Cerro Tres Puntas está ubicada a 3685 metros sobre el nivel del mar, en los límites del centro de esquí Valle Nevado, a unos 60 km de Santiago  (Región Metropolitana 33.19”12 °S 70.13”55°W) La estación cuenta con un refugio y posee diversos instrumentos meteorológicos y de calidad de aire que permitirán tener series largas de estas variables en una zona poco instrumentada de la Cordillera. El refugio se instaló en abril 2019 y la estación Meteorológica en Enero de 2020. Un etalómetro para medir Carbono negro y un fotómetro solar de la red Aeronet fueron recientemente instalados en Abril de 2022. Los datos recolectados por los instrumentos del Refugio Andino estarán disponibles en forma libre y en tiempo real.
               '''), style={'margin-left':'24px'}),
+             html.A([ 
+             html.Img(src='data:image/png;base64,{}'.format(encoded_image_cerro),style = {'height':'450px'})], href='https://www.wmo.int/gaw/', style={'margin-left': '100px'}),
+              
             html.H1("Financiamiento", style={'margin-left':'10px',
                                                                                      'text-align': 'center','font-family': 'Abel','font-size': '28px','color': 'limegreen','backgroundColor': '#f6f6f6'}),
             dcc.Markdown(dedent(f'''
@@ -135,16 +155,28 @@ def Web_Language(Switch_Lang):
 
 
                                  
-                              '''), style={'margin-left':'24px'}),
+                              '''), style={'margin-left':'24px'}), html.H4(children=''),
+            html.H1("Tabla de Instrumentos ", style={'margin-left':'10px',
+                                                                                     'text-align': 'center','font-family': 'Abel','font-size': '28px','color': 'limegreen','backgroundColor': '#f6f6f6'}),
+	    dash_table.DataTable(
+	    id='table',
+	    columns=[{"name": i, "id": i} for i in df.columns],
+	    data=df.to_dict('records'),
+	    style_data={
+		'whiteSpace': 'normal',
+		'width' : '50px' ,	    
+		'height': 'auto'},
+		) ,
+           ],
 
-          ],
+	    
             style={'color': 'black', 'width':'60%','fontFamily': '"Times New Roman"'
                                                     ,'backgroundColor': '#f6f6f6', 'display': 'inline-block', 'margin-top':'50px', 'border-right': '2px solid #0668a1'}),
                               html.Div([
                                   html.H2(html.A("Cerro tres puntas",href = 'https://rapanui.wayra.cr2.cl/' ), style={'margin-left':'10px',
                                                                                      'text-align': 'center','font-family': 'Abel','font-size': '22px','color': 'limegreen','backgroundColor': '#f6f6f6'}),
                                   html.A([       
-             html.Img(src='data:image/png;base64,{}'.format(encoded_image_rapa_nui), style={'height':'500px'})],href = 'https://rapanui.wayra.cr2.cl/', style={'margin-left': '50px'}),
+             html.Img(src='data:image/png;base64,{}'.format(encoded_image_rapa_nui), style={'height':'400px'})],href = 'https://rapanui.wayra.cr2.cl/', style={'margin-left': '50px'}),
                                   
                                   dcc.Markdown(
                                       dedent(f'''
@@ -152,7 +184,7 @@ def Web_Language(Switch_Lang):
                                   ], style={'color': 'black', 'width':'40%','fontFamily': '"Times New Roman"'
                                                     ,'backgroundColor': '#f6f6f6','float':'right' ,'display': 'inline-block', 'margin-top':'50px'})
                               
-                              ], style={'backgroundColor': '#f6f6f6'})]
+                              ], style={'backgroundColor': '#f6f6f6'}),]
 
 #######################################Version en Español ##########################      
     if Switch_Lang==False:
