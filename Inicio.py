@@ -96,10 +96,7 @@ def Web_Language(Switch_Lang):
             html.H1("Estación de Alta Montaña Cerro Tres Puntas (Refugio Andino)", style={'margin-left':'10px',
                                                                                      'text-align': 'center','font-family': 'Abel','font-size': '28px','color': 'limegreen','backgroundColor': '#f6f6f6'}),
             dcc.Markdown(dedent(f'''
-                                El refugio Andino ubicado a 3685 m en los límites de la estación de esquí Valle Nevado, a 25 km de Santiago – Región Metropolitana 33.19”12 °S 70.13”55°W)
-                                El Refugio Andino es un proyecto que consiste en medir la meteorología y otros parámetros atmosféricos  cómo la contaminación del aire y el flujo solar en la Cordillera cerca de Santiago.
-                                El refugio se instaló en abril 2019 y la estación de meteorología en enero 2020. Un etalametro para medir Carbono negro y un Radiometro Aeronet de Aerosol Optical depth serían instalado cuando las condiciones permita .
-                                La información de del Refugio Andino está disponible en forma libre y en tiempo real.
+			La estación de Alta Montaña Cerro Tres Puntas está ubicada a 3685 metros sobre el nivel del mar, en los límites del centro de esquí Valle Nevado, a unos 60 km de Santiago  (Región Metropolitana 33.19”12 °S 70.13”55°W) La estación cuenta con un refugio y posee diversos instrumentos meteorológicos y de calidad de aire que permitirán tener series largas de estas variables en una zona poco instrumentada de la Cordillera. El refugio se instaló en abril 2019 y la estación Meteorológica en Enero de 2020. Un etalómetro para medir Carbono negro y un fotómetro solar de la red Aeronet fueron recientemente instalados en Abril de 2022. Los datos recolectados por los instrumentos del Refugio Andino estarán disponibles en forma libre y en tiempo real.
               '''), style={'margin-left':'24px'}),
             html.H1("Financiamiento", style={'margin-left':'10px',
                                                                                      'text-align': 'center','font-family': 'Abel','font-size': '28px','color': 'limegreen','backgroundColor': '#f6f6f6'}),
@@ -114,7 +111,8 @@ def Web_Language(Switch_Lang):
                                 * Zoë Fleming (Investigadora CR2, química atmosférica)
                                 * Nicolás Huneeus (Académico DGF y CR2) 
                                 * Laura Gallardo (Académico DGF y CR2) 
-                                * Francisca Muñoz (Encargada de Datos y Cómputos, CR2) 
+                                * Francisca Muñoz (Encargada de Datos y Cómputos, CR2)
+                                * Camilo Menares (base de datos, CR2) 
                                 * Cecilia Montecino (Jefe Administrativa, CR2) 
                                 * Susana Bustos (Apoyo en coordinación, CR2) 
                                  
@@ -123,14 +121,18 @@ def Web_Language(Switch_Lang):
             html.H1("Bitácora de funcionamiento", style={'margin-left':'10px',
                                                                                      'text-align': 'center','font-family': 'Abel','font-size': '28px','color': 'limegreen','backgroundColor': '#f6f6f6'}),
           dcc.Markdown(dedent(f''' 
-                                1. 3 enero 2020 – ingeniería y Proyectos – instalación final de los instrumentos en la torre
-                                2. 31 enero 2020 - visita
-                                3. 19 febrero 2020 - reparaciones
-                                4. 2 septiembre 2020 - visita
-                                5. 30 septiembre 2020- visita
-                                6. 1 diciembre 2020- cambio de datalogger y enchufar pluviometro
-                                7. 28 enero 2021 anticongelante dejado en el pluviometro
-                                8. 1 abril arquitectos empezan a poner plataforma
+				1. 3 enero 2020 – ingeniería y Proyectos – instalación final de los instrumentos en la torre.
+				2. 31 enero 2020 - visita.
+				3. 19 febrero 2020 - reparaciones.
+				4. 2 septiembre 2020 - visita.
+				5. 30 septiembre 2020- visita.
+				6. 1 diciembre 2020- cambio de datalogger y conexión pluviómetro.
+				7. 28 enero 2021 anticongelante en el pluviómetro.
+				8. 1 abril 2021 -visita (construcción con arquitectos)
+				9. 14 septiembre 2021 - visita
+				10. 17 diciembre 2021 - visita (arquitectos terminaron construcción)
+				11. 14 abril 2022 - visita (anticongelante, instalación fotómetro, dejar nuevo paneles solares, cambio de tarjeta SIM) 
+
 
                                  
                               '''), style={'margin-left':'24px'}),
@@ -142,7 +144,7 @@ def Web_Language(Switch_Lang):
                                   html.H2(html.A("Cerro tres puntas",href = 'https://rapanui.wayra.cr2.cl/' ), style={'margin-left':'10px',
                                                                                      'text-align': 'center','font-family': 'Abel','font-size': '22px','color': 'limegreen','backgroundColor': '#f6f6f6'}),
                                   html.A([       
-             html.Img(src='data:image/png;base64,{}'.format(encoded_image_rapa_nui), style={'height':'680px'})],href = 'https://rapanui.wayra.cr2.cl/', style={'margin-left': '50px'}),
+             html.Img(src='data:image/png;base64,{}'.format(encoded_image_rapa_nui), style={'height':'500px'})],href = 'https://rapanui.wayra.cr2.cl/', style={'margin-left': '50px'}),
                                   
                                   dcc.Markdown(
                                       dedent(f'''
@@ -213,7 +215,7 @@ def Web_Language(Switch_Lang):
                                   html.H2(html.A("Rapa Nui Dashboard",href = 'https://rapanui.wayra.cr2.cl/' ), style={'margin-left':'10px',
                                                                                      'text-align': 'center','font-family': 'Abel','font-size': '22px','color': 'limegreen','backgroundColor': '#f6f6f6'}),
                                   html.A([       
-             html.Img(src='data:image/png;base64,{}'.format(encoded_image_rapa_nui), style={'height':'200px'})],href = 'https://rapanui.wayra.cr2.cl/', style={'margin-left': '50px'}),
+             html.Img(src='data:image/png;base64,{}'.format(encoded_image_rapa_nui), style={'height':'500px'})],href = 'https://rapanui.wayra.cr2.cl/', style={'margin-left': '50px'}),
                                   
                                   dcc.Markdown(
                                       dedent(f'''
